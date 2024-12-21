@@ -12,7 +12,7 @@ DictOnly
 
 ``DictOnly`` is a Python module for systematically manipulating
 complicated and/or unpredictable "JSON" data structures (i.e., objects
-consisting of arbitrarily nested dictionaries and lists.) 
+consisting of arbitrarily nested dictionaries and lists.)
 
 The basic idea is to convert lists to dictionaries so that both
 objects can be handled in the same way. For example, the list
@@ -30,9 +30,9 @@ is transformed into the dictionary
 .. code:: json
 
     {
-      0: "item1",
-      1: "item2",
-      2: "item3"
+      "0": "item1",
+      "1": "item2",
+      "2": "item3"
     }
 
 2 Example 1

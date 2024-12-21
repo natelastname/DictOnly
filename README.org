@@ -27,9 +27,9 @@ is transformed into the dictionary
 
 #+begin_src json
 {
-  0: "item1",
-  1: "item2",
-  2: "item3"
+  "0": "item1",
+  "1": "item2",
+  "2": "item3"
 }
 #+end_src
 
