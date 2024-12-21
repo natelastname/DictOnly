@@ -8,19 +8,18 @@ requires = ["setuptools", "wheel"]
 
 # https://setuptools.readthedocs.io/en/latest/setuptools.html#configuring-setup-using-setup-cfg-files
 [project]
-name = "mymodule"
+name = "DictOnly"
 version = "1.0.0"
 description = "A python module"
-readme = "README.md"
+readme = "README.rst"
 authors = [
   {name = "nate", email = "author0@example.org"},
 ]
 license = {file = "LICENSE"}
 keywords = ["keyword1", "keyword2"]
-
-[project.scripts]
-# Makes 'spam-cli' an executable on PATH
-spam-cli = "module0.util:replace_me"
+dependencies = [
+  "json5>=0.9.25"
+]
 
 [project.urls]
 Homepage = "https://example.com"

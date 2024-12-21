@@ -1,0 +1,80 @@
+# -*- mode: org -*-
+#+TITLE: DictOnly
+#+AUTHOR: nate
+#+DATE: <2024-12-19>
+#+KEYWORDS:
+
+# Export via: org-md-export-to-markdown
+
+* Introduction
+
+=DictOnly= is a Python module for systematically manipulating
+complicated and/or unpredictable "JSON" data structures (i.e., objects
+consisting of arbitrarily nested dictionaries and lists.)
+
+The basic idea is to convert lists to dictionaries so that both
+objects can be handled in the same way. For example, the list
+
+#+begin_example
+[
+  "item1",
+  "item2",
+  "item3"
+]
+#+end_example
+
+is transformed into the dictionary
+
+#+begin_src json
+{
+  0: "item1",
+  1: "item2",
+  2: "item3"
+}
+#+end_src
+
+
+* Example 1
+
+The goal is to get =response['key1']['key2']['key3']= without assuming:
+
+1. =response['key1']= exists and is a dictionary
+2. =response['key2']['key2']= exists and is a dictionary
+3. =response['key1']['key2']['key3']= exists and is a dictionary
+
+One obvious solution to this problem would be
+
+#+begin_src python
+def handle_response(response):
+    tmp = response
+    # Get key1 if it exists
+    tmp = tmp.get('key1')
+    if not tmp:
+        return
+    # Get key2 if it exists
+    tmp = tmp.get('key2')
+    if not tmp:
+        return
+    # Get key3 if it exists
+    tmp = tmp.get('key3')
+    if not tmp:
+        return
+
+    return tmp
+#+end_src
+
+Using DictOnly, this becomes
+
+#+begin_src python
+import DictOnly
+
+def handle_response(response):
+    tree = DictOnly.DictOnly(response)
+    return tree.get('key1', 'key2', 'key3')
+#+end_src
+
+* Example 2
+
+Here's an example borrowed from =test/test_main.py=:
+
+#+INCLUDE: "./tests/test_main.py" src python
